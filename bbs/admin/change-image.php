@@ -20,7 +20,11 @@ if(strlen($_SESSION['aid']) == 0) {
         $boatimage = md5($image).time().$extension;
 
         // Move uploaded file to the 'images' directory
-        move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $boatimage);
+
+        // move_uploaded_file($_FILES["image"]["tmp_name"], "images/" . $boatimage);
+
+        $targetDir = "images/"; // Ensure correct folder name (case-sensitive)
+        move_uploaded_file($_FILES["image"]["tmp_name"], $targetDir . $boatimage);
 
         // Update query (fixing the wrong variable reference)
         $query = "UPDATE tblboat SET Image='$boatimage' WHERE ID = $eid";
@@ -30,7 +34,7 @@ if(strlen($_SESSION['aid']) == 0) {
 
         // Check if the query was successful
         if($result) {
-            echo "<script>alert('Boat image updated successfully.');</script>";
+            echo "<script>alert('Bus image updated successfully.');</script>";
             echo "<script type='text/javascript'> document.location = 'manage-boat.php'; </script>";
         } else {
             echo "<script>alert('Something went wrong. Please try again.');</script>";
@@ -40,12 +44,14 @@ if(strlen($_SESSION['aid']) == 0) {
 ?>
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System  | Update Boat</title>
+  <title>Bus Booking System  | Update Bus</title>
 
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -78,12 +84,12 @@ if(strlen($_SESSION['aid']) == 0) {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Update Boat Image</h1>
+            <h1>Update Bus Image</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-              <li class="breadcrumb-item active">Update Boat</li>
+              <li class="breadcrumb-item active">Update Bus</li>
             </ol>
           </div>
         </div>
@@ -99,7 +105,7 @@ if(strlen($_SESSION['aid']) == 0) {
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Update Boat Image</h3>
+                <h3 class="card-title">Update Bus Image</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -114,7 +120,7 @@ while($result=mysqli_fetch_array($query)){
 
 
    <div class="form-group">
-                    <label for="exampleInputFullname">Name of Boat</label>
+                    <label for="exampleInputFullname">Name of Bus</label>
                     <input type="text" class="form-control" id="boatname" name="boatname" value="<?php echo $result['BoatName'];?>" readonly>
                   </div>
 

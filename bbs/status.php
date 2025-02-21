@@ -7,7 +7,7 @@ include('includes/config.php');
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Booking Status</title>
+  <title>Bus Booking System || Booking Status</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -30,6 +30,9 @@ include('includes/config.php');
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -45,12 +48,12 @@ include('includes/config.php');
     
     <?php include_once("includes/navbar.php");?>
     
-    <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
-        <div class="container">
+    <div class="intro-section" style="background-image: url('images/ns_bus_13.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
+    <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
               <h1>Booking Status</h1>
-              <p><a href="contact.php" class="btn btn-primary py-3 px-5">Contact</a></p>
+              <p><a href="faqs.php" class="btn btn-primary py-3 px-5">Faqs!</a></p>
             </div>
           </div>
         </div>
@@ -86,75 +89,93 @@ include('includes/config.php');
             </form>
           </div>
 
+<?php
+// Ensure database connection is established before executing the query
+include('db_connection.php'); // Include your database connection file
 
-<?php if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+    // Validate and sanitize input to prevent SQL injection
+    $emailid = mysqli_real_escape_string($con, $_POST['emailid']);
+    $phonenumber = mysqli_real_escape_string($con, $_POST['phonenumber']);
 
-$emailid=$_POST['emailid'];
-$phonenumber=$_POST['phonenumber'];
-  ?>
-<div class="col-md-12">
-         <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                 <tr>
-                    <th>#</th>
-                    <th>Bookings No</th>
-                    <th>Name</th>
-                    <th>Email Id</th>
-                    <th>Mobile No</th>
-                    <th>No. People</th>
-                    <th>Boking Date/Time</th>
-                     <th>Posting Date</th>
-                     <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-<?php $query=mysqli_query($con,"select * from tblbookings where PhoneNumber='$phonenumber' and EmailId='$emailid'");
-$cnt=1;
-while($result=mysqli_fetch_array($query)){
+    // Check for empty inputs
+    if (empty($emailid) || empty($phonenumber)) {
+        echo '<div class="alert alert-danger" role="alert">Email ID and Phone Number are required!</div>';
+    } else {
+?>
+        <div class="container mt-4">
+            <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Bookings No</th>
+                            <th>Name</th>
+                            <th>Email Id</th>
+                            <th>Mobile No</th>
+                            <th>No. People</th>
+                            <th>Booking Date/Time</th>
+                            <th>Posting Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Query to fetch booking details
+                        $query = mysqli_query($con, "SELECT * FROM tblbookings WHERE PhoneNumber='$phonenumber' AND EmailId='$emailid'");
+                        $cnt = 1;
+
+                        // Loop through the query result
+                        while ($result = mysqli_fetch_array($query)) {
+                        ?>
+                            <tr>
+                                <td><?php echo $cnt; ?></td>
+                                <td><?php echo htmlspecialchars($result['BookingNumber']); ?></td>
+                                <td><?php echo htmlspecialchars($result['FullName']); ?></td>
+                                <td><?php echo htmlspecialchars($result['EmailId']); ?></td>
+                                <td><?php echo htmlspecialchars($result['PhoneNumber']); ?></td>
+                                <td><?php echo htmlspecialchars($result['NumnerofPeople']); ?></td>
+                                <td><?php echo htmlspecialchars($result['BookingDateFrom'] . '/' . $result['BookingTime']); ?></td>
+                                <td><?php echo htmlspecialchars($result['postingDate']); ?></td>
+                                <td>
+                                    <?php if ($result['BookingStatus'] == '') { ?>
+                                        <span class="badge bg-warning text-dark">Not Processed Yet</span>
+                                    <?php } elseif ($result['BookingStatus'] == 'Accepted') { ?>
+                                        <span class="badge bg-success">Accepted</span>
+                                    <?php } elseif ($result['BookingStatus'] == 'Rejected') { ?>
+                                        <span class="badge bg-danger">Rejected</span>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <a href="booking-details.php?bid=<?php echo base64_encode($result['ID']); ?>&eml=<?php echo base64_encode($result['EmailId']); ?>&pno=<?php echo base64_encode($result['PhoneNumber']); ?>" title="View Details" class="btn btn-primary btn-sm">View Details</a>
+                                </td>
+                            </tr>
+                        <?php
+                            $cnt++;
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<?php
+    }
+}
 ?>
 
-                  <tr>
-                    <td><?php echo $cnt;?></td>
-                    <td><?php echo $result['BookingNumber']?></td>
-                    <td><?php echo $result['FullName']?></td>
-                    <td><?php echo $result['EmailId']?></td>
-                   <td><?php echo $result['PhoneNumber']?></td>
-                   <td><?php echo $result['NumnerofPeople']?></td>
-                  
-                    <td><?php echo $result['BookingDateFrom']?>/<?php echo $result['BookingTime']?></td>
-                    <td><?php echo $result['postingDate']?></td>
-                    <td><?php if($result['BookingStatus']==''): ?>
-                    <span class="badge bg-warning text-dark">Not Processed Yet</span>
-                  <?php elseif($result['BookingStatus']=='Accepted'): ?>
-                    <span class="badge bg-success">Accepted</span>
-                    <?php elseif($result['Rejected']=='Rejected'): ?>
-                      <span class="badge bg-danger">Rejected</span>
-                    <?php endif;?></td>
-                    <th>
-     <a href="booking-details.php?bid=<?php echo base64_encode($result['ID']);?>&&eml=<?php echo base64_encode($result['EmailId']);?>&&pno=<?php echo base64_encode($result['PhoneNumber']);?>" title="View Details" class="btn btn-primary btn-sm"> View Details</a> 
- </th>
-                  </tr>
-         <?php $cnt++;} ?>
-             
-                  </tbody>
-                </table>
-
-              </div>
-
-<?php } ?>
 
         </div>
       </div>
     </div>
     
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_2.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="text-white">Get In Touch With Us</h2>
-            <p class="mb-0"><a href="contact.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
+            <p class="mb-0"><a href="faqs.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
           </div>
         </div>
       </div>

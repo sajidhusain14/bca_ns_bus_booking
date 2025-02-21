@@ -1,37 +1,41 @@
-<?php session_start();
+<?php 
+session_start();
 // Database Connection
 include('includes/config.php');
-//Validating Session
-if(strlen($_SESSION['aid'])==0)
-  { header('location:index.php');
-}
-else{
-// Code for change Password
-if(isset($_POST['change'])){
-$admid=$_SESSION['aid'];
-$cpassword=md5($_POST['currentpassword']);
-$newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select ID from tbladmin where ID='$admid' and   Password='$cpassword'");
-$row=mysqli_fetch_array($query);
-if($row>0){
-$ret=mysqli_query($con,"update tbladmin set Password='$newpassword' where ID='$admid'");
-echo '<script>alert("Your password successully changed.")</script>';
+
+// Validating Session
+if(strlen($_SESSION['aid'])==0) { 
+    header('location:index.php');
+    exit(); // ✅ Prevent further execution if session is invalid
 } else {
+    // Code for change Password
+    if(isset($_POST['change'])) {
+        $admid = $_SESSION['aid'];
+        $cpassword = md5($_POST['currentpassword']);
+        $newpassword = md5($_POST['newpassword']);
 
-echo '<script>alert("Your current password is wrong.")</script>';
+        // ✅ Fixing SQL query syntax (using ⁠ mysqli_num_rows ⁠ instead of ⁠ $row>0 ⁠)
+        $query = mysqli_query($con, "SELECT ID FROM tbladmin WHERE ID='$admid' AND Password='$cpassword'");
+        if(mysqli_num_rows($query) > 0) { 
+            $ret = mysqli_query($con, "UPDATE tbladmin SET Password='$newpassword' WHERE ID='$admid'");
+            if ($ret) {
+                echo '<script>alert("Your password was successfully changed.");</script>';
+            } else {
+                echo '<script>alert("Something went wrong. Please try again.");</script>';
+            }
+        } else {
+            echo '<script>alert("Your current password is incorrect.");</script>';
+        }
+    }
 }
+?>
 
-
-
-}
-
-  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System   | Between Dates Report</title>
+  <title>Bus Booking System | Between Dates Report</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -39,17 +43,13 @@ echo '<script>alert("Your current password is wrong.")</script>';
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <!--Function Email Availabilty---->
-
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <!-- Navbar -->
-<?php include_once("includes/navbar.php");?>
-  <!-- /.navbar -->
-
+  <?php include_once("includes/navbar.php");?>
   <!-- Main Sidebar Container -->
- <?php include_once("includes/sidebar.php");?>
+  <?php include_once("includes/sidebar.php");?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -67,7 +67,7 @@ echo '<script>alert("Your current password is wrong.")</script>';
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <!-- Main content -->
@@ -76,67 +76,39 @@ echo '<script>alert("Your current password is wrong.")</script>';
         <div class="row">
           <!-- left column -->
           <div class="col-md-8">
-            <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title">B/w Dates Booking Report</h3>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-<form method="post"  name="bwdatesreport" action="bwdates-report-details.php">  
+              <form method="post" name="bwdatesreport" action="bwdates-report-details.php">  
                 <div class="card-body">
-
-<!-- From Date--->
-   <div class="form-group">
-                    <label for="exampleInputFullname">From Date</label>
-                <input class="form-control" id="fdate" name="fdate"  type="date" required="true">
+                  <div class="form-group">
+                    <label for="fdate">From Date</label>
+                    <input class="form-control" id="fdate" name="fdate" type="date" required>
                   </div>
-<!---To Date---->
- <div class="form-group">
-<label for="exampleInputEmail1">To Date</label>
-<input class="form-control " id="tdate" type="date" name="tdate" required="true">
-</div>
-
-
-
-      
+                  <div class="form-group">
+                    <label for="tdate">To Date</label>
+                    <input class="form-control" id="tdate" type="date" name="tdate" required>
+                  </div>
                 </div>
-                <!-- /.card-body -->
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                 </div>
               </form>
-</div>
-            <!-- /.card -->
-
-        
-       
+            </div>
           </div>
-          <!--/.col (left) -->
-  
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-<?php include_once('includes/footer.php');?>
-
+  <?php include_once('includes/footer.php');?>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
+<!-- Scripts -->
 <script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- bs-custom-file-input -->
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- Page specific script -->
 <script>
 $(function () {
   bsCustomFileInput.init();
@@ -144,4 +116,3 @@ $(function () {
 </script>
 </body>
 </html>
-<?php } ?>

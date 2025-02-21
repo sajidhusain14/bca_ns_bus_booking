@@ -7,7 +7,7 @@ include('includes/config.php');
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Booking Status</title>
+  <title>Bus Booking System || Booking Status</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -30,6 +30,9 @@ include('includes/config.php');
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -45,12 +48,12 @@ include('includes/config.php');
     
     <?php include_once("includes/navbar.php");?>
     
-    <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
+    <div class="intro-section" style="background-image: url('images/ns_bus_30.png');">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
               <h1>Booking Details</h1>
-              <p><a href="contact.php" class="btn btn-primary py-3 px-5">Contact</a></p>
+              <p><a href="faqs.php" class="btn btn-primary py-3 px-5">Faqs!</a></p>
             </div>
           </div>
         </div>
@@ -62,81 +65,91 @@ include('includes/config.php');
 
 
 
+        <div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table id="example1" class="table table-bordered table-striped">
+                    <tbody>
+                        <?php 
+                        $bid = base64_decode($_GET['bid']);
+                        $eml = base64_decode($_GET['eml']);
+                        $pno = base64_decode($_GET['pno']);
+                        $query = mysqli_query($con, "SELECT tblbookings.*, tblboat.ID, tblboat.BoatName 
+                            FROM tblbookings 
+                            JOIN tblboat ON tblboat.ID = tblbookings.BoatID  
+                            WHERE tblbookings.ID='$bid' AND tblbookings.EmailId='$eml' AND tblbookings.PhoneNumber='$pno'");
+                        $cnt = 1;
+                        while ($result = mysqli_fetch_array($query)) {
+                        ?>
 
+                        <tr>
+                            <th>Booking Number</th>
+                            <td colspan="3"><?php echo $result['BookingNumber']; ?></td>
+                        </tr>
 
-<div class="col-md-12">
-<table id="example1" class="table table-bordered table-striped">
-       
-                  <tbody>
-<?php $bid=base64_decode($_GET['bid']);
-$eml=base64_decode($_GET['eml']);
-$pno=base64_decode($_GET['pno']);
-$query=mysqli_query($con,"select tblbookings.*, tblboat.ID,tblboat.BoatName from tblbookings join tblboat on tblboat.ID=tblbookings.BoatID  where tblbookings.ID='$bid' and tblbookings.EmailId='$eml' and tblbookings.PhoneNumber='$pno'");
-$cnt=1;
-while($result=mysqli_fetch_array($query)){
-?>
+                        <tr>
+                            <th>Name</th>
+                            <td><?php echo $result['FullName']; ?></td>
+                            <th>Email Id</th>
+                            <td><?php echo $result['EmailId']; ?></td>
+                        </tr>
 
+                        <tr>
+                            <th>Mobile No</th>
+                            <td><?php echo $result['PhoneNumber']; ?></td>
+                            <th>No of Peoples</th>
+                            <td><?php echo $result['NumnerofPeople']; ?></td>
+                        </tr>
 
-       <tr>
-                  <th>Booking Number</th>
-                    <td colspan="3"><?php echo $result['BookingNumber']?></td>
-                  </tr>
+                        <tr>
+                            <th>Booking Date From - To</th>
+                            <td><?php echo $result['BookingDateFrom']; ?> to <?php echo $result['BookingDateTo']; ?></td>
+                            <th>Booking Time</th>
+                            <td><?php echo $result['BookingTime']; ?></td>
+                        </tr>
 
-                  <tr>
-                  <th> Name</th>
-                    <td><?php echo $result['FullName']?></td>
-                    <th>Email Id</th>
-                   <td> <?php echo $result['EmailId']?></td>
-                  </tr>
-                  <tr>
-                    <th> Mobile No</th>
-                    <td><?php echo $result['PhoneNumber']?></td>
-                    <th>No of Peoples</th>
-                    <td><?php echo $result['NumnerofPeople']?></td>
-                  </tr>
-                  <tr>
-                    <th>Bookingd Date From - Bookingd Date To</th>
-                   <td><?php echo $result['BookingDateFrom']?> to  <?php echo $result['BookingDateTo']?></td>
-                   <th>Booking Time</th>
-                   <td><?php echo $result['BookingTime']?></td>
-                 </tr>
-                 <tr>
-                  <th>Posting Date</th>
-                    <td ><?php echo $result['postingDate']?></td>
-                    <th>Boat Name</th>
-                    <td ><?php echo $result['BoatName']?>  <a href='boat-details.php?bid=<?php echo $result['BoatID']; ?>' target="blank"> View Details</a></td>
-                  </tr>
+                        <tr>
+                            <th>Posting Date</th>
+                            <td><?php echo $result['postingDate']; ?></td>
+                            <th>Bus Name</th>
+                            <td>
+                                <?php echo $result['BoatName']; ?>
+                                <a href='boat-details.php?bid=<?php echo $result['BoatID']; ?>' target="_blank">View Details</a>
+                            </td>
+                        </tr>
 
- 
+                        <tr>
+                            <th>Booking Status</th>
+                            <td>
+                                <?php if ($result['BookingStatus'] == ''): ?>
+                                    <span class="badge bg-warning text-dark">Not Processed Yet</span>
+                                <?php elseif ($result['BookingStatus'] == 'Accepted'): ?>
+                                    <span class="badge bg-success">Accepted</span>
+                                <?php elseif ($result['BookingStatus'] == 'Rejected'): ?>
+                                    <span class="badge bg-danger">Rejected</span>
+                                <?php endif; ?>
+                            </td>
+                            <th>Updation Date</th>
+                            <td><?php echo $result['UpdationDate']; ?></td>
+                        </tr>
 
+                        <tr>
+                            <th>Remark</th>
+                            <td colspan="3"><?php echo $result['AdminRemark']; ?></td>
+                        </tr>
 
-            <tr>
-                  <th>Booking  Status</th>
-                    <td><?php if($result['BookingStatus']==''): ?>
-<span class="badge bg-warning text-dark">Not Processed Yet</span>
-                  <?php elseif($result['BookingStatus']=='Accepted'): ?>
-                    <span class="badge bg-success">Accepted</span>
-                    <?php elseif($result['Rejected']=='Rejected'): ?>
-                      <span class="badge bg-danger">Rejected</span>
-                    <?php endif;?></td>
-                    <th>Updation Date</th>
-                    <td><?php echo $result['UpdationDate']?></td>
-                  </tr>
-
-      <tr>
-                  <th> Remark</th>
-                    <td colspan="3"><?php echo $result['AdminRemark']?></td>
-                  </tr>
-
-
-
-         <?php $cnt++;} ?>
-             
-                  </tbody>
-     
+                        <?php 
+                        $cnt++;
+                        } 
+                        ?>
+                    </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-              </div>
 
 
         </div>
@@ -144,12 +157,12 @@ while($result=mysqli_fetch_array($query)){
     </div>
     
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_2.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="text-white">Get In Touch With Us</h2>
-            <p class="mb-0"><a href="contact.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
+            <p class="mb-0"><a href="about.php" class="btn btn-warning py-3 px-5 text-white">About Us</a></p>
           </div>
         </div>
       </div>

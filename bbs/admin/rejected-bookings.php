@@ -16,7 +16,7 @@ else{
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | Rejected Bookings</title>
+  <title>Bus Booking System | Rejected Bookings</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -79,7 +79,7 @@ else{
                     <th>Email Id</th>
                     <th>Mobile No</th>
                     <th>No. People</th>
-                    <th>Boking Date/Time</th>
+                    <th>Booking Date/Time</th>
                      <th>Posting Date</th>
                      <th>Status</th>
                     <th>Action</th>
@@ -105,7 +105,7 @@ while($result=mysqli_fetch_array($query)){
 <span class="badge bg-warning text-dark">Not Processed Yet</span>
                   <?php elseif($result['BookingStatus']=='Accepted'): ?>
                     <span class="badge bg-success">Accepted</span>
-                    <?php elseif($result['Rejected']=='Rejected'): ?>
+                    <?php elseif($result['BookingStatus']=='Rejected'): ?>
                       <span class="badge bg-danger">Rejected</span>
 
                     <?php endif;?></td>

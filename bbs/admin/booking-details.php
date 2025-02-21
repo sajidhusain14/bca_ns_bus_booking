@@ -32,7 +32,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System  | Booking Details</title>
+  <title>Bus Booking System  | Booking Details</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -122,7 +122,7 @@ while($result=mysqli_fetch_array($query)){
                  <tr>
                   <th>Posting Date</th>
                     <td ><?php echo $result['postingDate']?></td>
-                    <th>Boat Name</th>
+                    <th>Bus Name</th>
                     <td ><?php echo $result['BoatName']?>  <a href='edit-boat.php?bid=<?php echo $result['BoatID']; ?>'> View Details</a></td>
                   </tr>
 
@@ -135,7 +135,7 @@ while($result=mysqli_fetch_array($query)){
 <span class="badge bg-warning text-dark">Not Processed Yet</span>
                   <?php elseif($result['BookingStatus']=='Accepted'): ?>
                     <span class="badge bg-success">Accepted</span>
-                    <?php elseif($result['Rejected']=='Rejected'): ?>
+                    <?php elseif($result['BookingStatus']=='Rejected'): ?>
                       <span class="badge bg-danger">Rejected</span>
                     <?php endif;?></td>
                     <th>Updation Date</th>
@@ -147,7 +147,7 @@ while($result=mysqli_fetch_array($query)){
                     <td colspan="3"><?php echo $result['AdminRemark']?></td>
                   </tr>
 <?php endif;?>
-<?php if($result['BookingStatus']==''):?>
+<?php if($result['BookingStatus']=='Accepted' ||$result['BookingStatus']==''):?>
 <tr>
   <td colspan="4" style="text-align:center;">
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Take Action</button>

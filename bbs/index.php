@@ -6,7 +6,7 @@ include('includes/config.php');
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Home Page</title>
+  <title>Bus Booking System || Home Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -27,8 +27,15 @@ include('includes/config.php');
 
   <link rel="stylesheet" href="css/aos.css">
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -45,25 +52,43 @@ include('includes/config.php');
     <?php include_once("includes/navbar.php");?>
     
     <div class="hero-slide owl-carousel site-blocks-cover">
-      <div class="intro-section" style="background-image: url('images/hero_1.jpg');">
+   
+
+      <div class="intro-section" style="background-image: url('images/ns_bus_17.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-lg-7 ml-auto text-right" data-aos="fade-up">
-              <h1>Explore, Discover The Rivers</h1>
-          
-              
+            <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
+            <h1> Enjoy the bus ride with your family </h1>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
+      <div class="intro-section" style="background-image: url('images/ns_bus_14.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
-              <h1>Enjoy The Boat Ride With Your Family</h1>
-         
-             
+              <h1>Make Memories Together on Every Mile</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-section" style="background-image: url('images/ns_bus_15.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
+              <h1>Explore Destinations with Affordable Luxury</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro-section" style="background-image: url('images/ns_bus_16.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
+              <h1>Experience the Journey with Panoramic Windows</h1>
             </div>
           </div>
         </div>
@@ -76,12 +101,12 @@ include('includes/config.php');
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/hero_2.jpg" alt="Image" class="img-fluid">
+            <img src="images/ns_bus_31.png" alt="Image" class="img-fluid">
           </div>
           <div class="col-md-6">
             <span class="text-serif text-primary">About Us</span>
             <h3 class="heading-92913 text-black">Welcome To Our Website</h3>
-            <p>Boat Bookung System developed usinh PHP and MySQL</p>
+            <p>Welcome to our website! NS Online Bus Booking System is your trusted platform for convenient and hassle-free bus ticket reservations. Explore a seamless experience as you plan your journeys with just a few clicks, all from the comfort of your home.</p>
             
           
           </div>
@@ -96,8 +121,9 @@ include('includes/config.php');
             <div class="service-29283">
               <span class="wrap-icon-39293">
                 <span class="flaticon-yacht"></span>
+                
               </span>
-              <h3>Luxuries Boat</h3>
+              <h3>Luxuries Bus</h3>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -105,7 +131,7 @@ include('includes/config.php');
               <span class="wrap-icon-39293">
                 <span class="flaticon-shield"></span>
               </span>
-              <h3>30 Years of Experience</h3>
+              <h3>15+ Years of Experience</h3>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
@@ -113,90 +139,106 @@ include('includes/config.php');
               <span class="wrap-icon-39293">
                 <span class="flaticon-captain"></span>
               </span>
-              <h3>Good Captain</h3>
+              <h3>Good Drivers</h3>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_1.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row">
           <div class="col">
             <div class="counter-39392">
-              <h3>200+</h3>
-              <span>Number of Boat</span>
+              <h3>150+</h3>
+              <span>Number of Bus</span>
             </div>
           </div>
           <div class="col">
             <div class="counter-39392">
-              <h3>7000+</h3>
+              <h3>4000+</h3>
               <span>Customers Satisfied</span>
             </div>
           </div>
           <div class="col">
             <div class="counter-39392">
-              <h3>120</h3>
+              <h3>300+</h3>
               <span>Number of Staffs</span>
             </div>
           </div>
         
           <div class="col">
             <div class="counter-39392">
-              <h3>230</h3>
-              <span>Professional Sailors</span>
+              <h3>170+</h3>
+              <span>Professional Drivers</span>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+
+    <!-- new code add  -->
     <div class="site-section bg-light">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 text-center">
-            <span class="text-serif text-primary">Destination</span>
-            <h3 class="heading-92913 text-black text-center">Our Destinations</h3>
-          </div>
-        </div>
-        <div class="row">
-         <?php $query=mysqli_query($con,"select * from tblboat limit 6");
-$cnt=1;
-while($result=mysqli_fetch_array($query)){
-?>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-39381">
-              <img src="admin/images/<?php echo $result['Image'];?>" alt="Image"  width="350" height="200">
-              <div class="p-4">
-                <h3><a href="boat-details.php?bid=<?php echo $result['ID']; ?>"><span class="icon-room mr-1 text-primary"></span> <?php echo $result['Source']?> &mdash; <?php echo $result['Destination']?></a></h3>
-                <div class="d-flex">
-          
-                  <div class="ml-auto price">
-                    <span class="bg-primary">$<?php echo $result['Price']?></span>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-          </div><?php $cnt++;} ?>
-          
-       
-
-        </div>
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-md-7 text-center">
+        <span class="text-serif text-primary">Destination</span>
+        <h3 class="heading-92913 text-black text-center">Our Buses</h3>
       </div>
     </div>
+    <div class="row">
+      <?php 
+      $query = mysqli_query($con, "SELECT * FROM tblboat LIMIT 6");
+      $cnt = 1;
+      while ($result = mysqli_fetch_array($query)) {
+      ?>
+   <div class="col-md-6 col-lg-4 mb-4">
+    <div class="service-39381 border rounded">
+        <!-- Image Container -->
+        <div class="image-container">
+            <img 
+                src="admin/images/<?php echo $result['Image']; ?>" 
+                alt="Image" 
+                class="img-fluid rounded" 
+                style="width: 100%; height: 200px; object-fit: cover;">
+        </div>
+        <!-- Content -->
+        <div class="p-4">
+            <!-- Heading -->
+            <h3>
+                <span class="icon-room mr-1 text-success"></span> 
+                <?php echo $result['Source']; ?> &mdash; <?php echo $result['Destination']; ?>
+            </h3>
+            <!-- Price Div (Centered with Margin) -->
+            <div class="d-flex justify-content-center mt-3"> <!-- Added justify-content-center and mt-3 -->
+                <div class="price">
+                    <span class="bg-success px-2 py-1 text-white rounded">₹ <?php echo $result['Price']; ?> / day</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      <?php 
+      $cnt++;
+      } 
+      ?>
+    </div>
+  </div>
+</div>
+
 
     
 
 
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_2.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="text-white">Get In Touch With Us</h2>
-            <p class="mb-0"><a href="contact.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
+            <p class="mb-0"><a href="about.php" class="btn btn-warning py-3 px-5 text-white">About Us</a></p>
           </div>
         </div>
       </div>

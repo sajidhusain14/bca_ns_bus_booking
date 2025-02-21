@@ -10,11 +10,11 @@ header('location:index.php');
 else{
 //Code For Deletion the classes
 if($_GET['action']=='delete'){
-$tid=intval($_GET['bid']);
+$bid=intval($_GET['bid']);
 
 $query=mysqli_query($con,"delete from tblboat where ID='$bid'");
 if($query){
-echo "<script>alert('Boat details deleted successfully.');</script>";
+echo "<script>alert('Bus details deleted successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'manage-boat.php'; </script>";
 } else {
 echo "<script>alert('Something went wrong. Please try again.');</script>";
@@ -29,7 +29,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System  | Manage Boat</title>
+  <title>Bus Booking System  | Manage Bus</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -57,12 +57,12 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Manage Boat</h1>
+            <h1>Manage Bus</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Manage Boat</li>
+              <li class="breadcrumb-item active">Manage Bus</li>
             </ol>
           </div>
         </div>
@@ -79,7 +79,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Manage Boat</h3>
+                <h3 class="card-title">Manage Bus</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -87,7 +87,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
                   <thead>
                   <tr>
                     <th>#</th>
-                    <th>Boat Title</th>
+                    <th>Bus Title</th>
                     <th>Price</th>
                     <th>Added By</th>
                     <th>Creation Date</th>

@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link">
 
-      <span class="brand-text font-weight-light">Boat Booking System | Admin </span>
+      <span class="brand-text font-weight-light">Bus Booking System | Admin </span>
     </a>
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -68,7 +68,7 @@
 <li class="nav-item">
             <a href="#" class="nav-link">
                    <i class="nav-icon fas fa-table"></i>
-              <p>Boats
+              <p>Buses
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>

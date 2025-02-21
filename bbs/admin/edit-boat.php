@@ -20,14 +20,16 @@ $route=$_POST['route'];
         $addedby = $_SESSION['aid'];
 
         // Update query
-        $query = "UPDATE tblboat SET BoatName='$boatname', Size='$size', Capacity='$capacity',Source='$source',Destination='$destination',Route='$route',Price='$price', Decription='$description', AddedBy='$addedby' WHERE ID = $eid";
+        // $query = "UPDATE tblboat SET BoatName='$boatname', Size='$size', Capacity='$capacity',Source='$source',Destination='$destination',Route='$route',Price='$price', Decription='$description', AddedBy='$addedby' WHERE ID = $eid";
+
+        $query = "UPDATE tblboat SET BoatName='$boatname', Size='$size', Capacity='$capacity', Source='$source', Destination='$destination', Route='$route', Price='$price', Description='$description', AddedBy='$addedby' WHERE ID = $eid";
 
         // Execute the query
         $result = mysqli_query($con, $query);
 
         // Check if the query was successful
         if($result) {
-            echo "<script>alert('Boat detail updated successfully.');</script>";
+            echo "<script>alert('Bus detail updated successfully.');</script>";
             echo "<script type='text/javascript'> document.location = 'manage-boat.php'; </script>";
         } else {
             echo "<script>alert('Something went wrong. Please try again.');</script>";
@@ -41,7 +43,7 @@ $route=$_POST['route'];
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System  | Update Boat</title>
+  <title>Bus Booking System  | Update Bus</title>
 
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -74,12 +76,12 @@ $route=$_POST['route'];
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Update Boat</h1>
+            <h1>Update Bus</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-              <li class="breadcrumb-item active">Update Boat</li>
+              <li class="breadcrumb-item active">Update Bus</li>
             </ol>
           </div>
         </div>
@@ -95,7 +97,7 @@ $route=$_POST['route'];
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Update Boat Details</h3>
+                <h3 class="card-title">Update Bus Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -110,7 +112,7 @@ while($result=mysqli_fetch_array($query)){
 
 
    <div class="form-group">
-                    <label for="exampleInputFullname">Name of Boat</label>
+                    <label for="exampleInputFullname">Name of Bus</label>
                     <input type="text" class="form-control" id="boatname" name="boatname" value="<?php echo $result['BoatName'];?>" required>
                   </div>
 
@@ -153,7 +155,7 @@ while($result=mysqli_fetch_array($query)){
 
                 <div class="form-group">
                     <label for="exampleInputFullname">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="Enter Description of Boat" required><?php echo $result['Description'];?></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="Enter Description of Bus" required><?php echo $result['Description'];?></textarea>
                   </div>
 <?php } ?>
 

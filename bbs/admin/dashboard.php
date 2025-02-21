@@ -12,7 +12,7 @@ else{ ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | Dashboard</title>
+  <title>Bus Booking System | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -90,7 +90,7 @@ $subadmincount=mysqli_num_rows($query);
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
-              <a href="manage-subadmins.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="manage-subadmins.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         <?php endif;?>
@@ -110,7 +110,7 @@ $allbookings=mysqli_num_rows($query1);
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="all-booking.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="all-booking.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -120,16 +120,23 @@ $allbookings=mysqli_num_rows($query1);
               <div class="inner">
  <?php $query3=mysqli_query($con,"select * from tblbookings where (BookingStatus is null || BookingStatus='')");
 $newbookings=mysqli_num_rows($query3);
-?>               
-                <h3><?php echo $newbookings;?></h3>
+?>      
 
-                <p>New Bookings</p>
+
+
+
+<h3 class="text-white"><?php echo $newbookings; ?></h3>
+<p class="text-white">New Bookings</p>
+                <!-- <h3><?php echo $newbookings;?></h3>
+
+                <p>New Bookings</p> -->
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="new-bookigs.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
+              <div style="background-color: rgba(0, 0, 0, 0.1);" class="p-1 text-center">
+    <a href="new-bookigs.php" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
+</div>          </div>
           </div>
           <!-- ./col -->
 
@@ -152,7 +159,7 @@ $acceptedbookings=mysqli_num_rows($query11);
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
-              <a href="accepted-bookings.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="accepted-bookings.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
  
@@ -172,10 +179,13 @@ $rejectedbookings=mysqli_num_rows($query12);
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="rejected-bookings.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="rejected-bookings.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
+
+
+          
           
 
 

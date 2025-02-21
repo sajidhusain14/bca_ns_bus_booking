@@ -23,7 +23,7 @@ $bno=mt_rand(100000000,9999999999);
 //Code for Insertion
 $query=mysqli_query($con,"insert into tblbookings(BoatID,BookingNumber,FullName,EmailId,PhoneNumber,BookingDateFrom,BookingDateTo,BookingTime,NumnerofPeople,Notes) values('$boatid','$bno','$fname','$emailid','$phonenumber','$bookingdatefrom','$bookingdateto','$bookingtime','$nopeople','$notes')");
 if($query){
-echo '<script>alert("Your boat booking request has been sent successfully. Booking number is "+"'.$bno.'")</script>';
+echo '<script>alert("Your bus booking request has been sent successfully. Booking number is "+"'.$bno.'")</script>';
 echo "<script type='text/javascript'> document.location = 'services.php'; </script>";
 } else {
 echo "<script>alert('Something went wrong. Please try again.');</script>";
@@ -32,7 +32,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 } 
 
 else {
-echo "<script>alert('Boat not available for these dates. Please select the diffrent dates');</script>";
+echo "<script>alert('Bus not available for these dates. Please select the diffrent dates');</script>";
 }}
 
 ?>
@@ -40,7 +40,7 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Booking Page</title>
+  <title>Bus Booking System || Booking Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -63,6 +63,9 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -78,12 +81,12 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
     
     <?php include_once("includes/navbar.php");?>
     
-    <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
+    <div class="intro-section" style="background-image: url('images/ns_bus_30.png');">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
-              <h1>Boat Booking</h1>
-              <p><a href="contact.php" class="btn btn-primary py-3 px-5">Contact</a></p>
+              <h1>Bus Booking</h1>
+              <p><a href="faqs.php" class="btn btn-primary py-3 px-5">Faqs!!</a></p>
             </div>
           </div>
         </div>
@@ -93,21 +96,27 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <p><img src="images/hero_1.jpg" alt="Image" class="img-fluid"></p>
+            <p><img src="images/ns_bus_30.png" alt="Image" class="img-fluid"></p>
           </div>
           <div class="col-md-6">
             <span class="text-serif text-primary">Book Now</span>
-            <h3 class="heading-92913 text-black">Book A Boat</h3>
+            <h3 class="heading-92913 text-black">Book A Bus</h3>
             <form action="#" class="row" method="post">
               <div class="form-group col-md-6">
                 <label for="input-1">Full Name:</label>
                 <input type="text" class="form-control" name="fname" required="true">
               </div>
-              <div class="form-group col-md-6">
+              <!-- <div class="form-group col-md-6">
                 <label for="input-2">Number of People:</label>
                 <input type="text" class="form-control" name="nopeople" required="true">
-              </div>
+              </div> -->
 
+              <div class="form-group col-md-6">
+        <label for="input-2">Number of People:</label>
+        <input type="number" class="form-control" name="nopeople" id="nopeople" required="true" placeholder="Enter number less than 76" oninput="validateNumber(this)">
+        <small id="error-message" class="text-danger" style="display: none;">Please enter a number less than 76.</small>
+      </div>
+<!-- 
               <div class="form-group col-md-6">
                 <label for="input-3">Date From:</label>
                 <input type="text" class="form-control datepicker" name="bookingdatefrom" required="true">
@@ -115,8 +124,17 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
               <div class="form-group col-md-6">
                 <label for="input-4">Date To:</label>
                 <input type="text" class="form-control datepicker" name="bookingdateto" required="true">
-              </div>
+              </div> -->
 
+              <div class="form-group col-md-6">
+    <label for="input-3">Date From:</label>
+    <input type="text" class="form-control datepicker" name="bookingdatefrom" id="bookingdatefrom" required="true">
+</div>
+<div class="form-group col-md-6">
+    <label for="input-4">Date To:</label>
+    <input type="text" class="form-control datepicker" name="bookingdateto" id="bookingdateto" required="true">
+</div>
+              
              <div class="form-group col-md-6">
                 <label for="input-4">Time:</label>
                 <input type="time" class="form-control timepicker" name="bookingtime" required="true">
@@ -127,13 +145,19 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
                 <input type="text" class="form-control" name="emailid" required="true">
               </div>
 
-              <div class="form-group col-md-6">
+              <!-- <div class="form-group col-md-6">
                 <label for="input-7">Phone Number</label>
                 <input type="text" class="form-control" name="phonenumber" maxlength="10" pattern="[0-9]+" required="true"> 
-              </div>
+              </div> -->
 
 
-              
+              <!-- new add chatgpt -->
+
+              <div class="form-group col-md-6">
+    <label for="input-7">Phone Number</label>
+    <input type="number" class="form-control" name="phonenumber" id="phonenumber" inputmode="numeric" min="0" maxlength="10" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
+</div>
+
               <div class="form-group col-md-12">
                 <label for="input-8">Notes</label>
                 <textarea cols="30" rows="5" class="form-control" name="notes"></textarea>
@@ -150,13 +174,13 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
     </div>
     
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_2.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="text-white">Get In Touch With Us</h2>
             <p class="lead text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <p class="mb-0"><a href="contact.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
+            <p class="mb-0"><a href="faqs.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
           </div>
         </div>
       </div>
@@ -193,14 +217,54 @@ echo "<script>alert('Boat not available for these dates. Please select the diffr
   <script src="js/main.js"></script>
 
 </body>
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
         $(".datepicker").datepicker({
             format: "yyyy-mm-dd",
         });
-    </script>
+    </script> -->
+
+
+<!-- new add chatgpt -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Initialize datepicker
+        $(".datepicker").datepicker({
+            format: "yyyy-mm-dd",
+            startDate: new Date() // Restrict selection to today and future dates
+        });
+
+        // Form submission validation
+        $('form').on('submit', function(event) {
+            var bookingDateFrom = new Date($('#bookingdatefrom').val());
+            var bookingDateTo = new Date($('#bookingdateto').val());
+            var today = new Date();
+            today.setHours(0, 0, 0, 0); // Set time to midnight for accurate comparison
+
+            if (bookingDateFrom < today || bookingDateTo < today) {
+                alert('Please select today\'s date or a future date.');
+                event.preventDefault(); // Prevent form submission
+            } else if (bookingDateFrom > bookingDateTo) {
+                alert('The "Date From" should be before or equal to the "Date To".');
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    });
+</script>
+
+<script>
+    function validateNumber(input) {
+      const errorMessage = document.getElementById('error-message');
+      const value = input.value;
+
+      // Check if the input is a number and less than 76
+      if (isNaN(value) || value < 1 || value > 75) {
+        errorMessage.style.display = 'block';
+        input.setCustomValidity('Invalid input');
+      } else {
+        errorMessage.style.display = 'none';
+        input.setCustomValidity('');
+      }
+    }
+  </script>
 
 </html>
-<!-- adfsdfsdfsdad -->
-<!-- dfdsf -->
-<!-- dsfsd -->
-<!-- dsfsdf -->

@@ -9,7 +9,7 @@ error_reporting(0);
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Home Page</title>
+  <title>Bus Booking System || Home Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -32,7 +32,8 @@ error_reporting(0);
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -47,12 +48,12 @@ error_reporting(0);
     
     <?php include_once("includes/navbar.php");?>
     
-    <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
+    <div class="intro-section" style="background-image: url('images/ns_bus_30.png');">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
               <h1>Our Services</h1>
-              <p><a href="#" class="btn btn-primary py-3 px-5">Contact</a></p>
+              <p><a href="faqs.php" class="btn btn-primary py-3 px-5">Faqs!</a></p>
             </div>
           </div>
         </div>
@@ -72,15 +73,15 @@ while($result=mysqli_fetch_array($query)){
           </div>
           <div class="col-md-5">
             
-            <h3 class="heading-92913 text-black">Boat Details</h3>
-                <p><strong>Boat Name:</Strong>  <?php echo $result['BoatName'];?></p>
-                <p><strong>Boat Size:</Strong>  <?php echo $result['Size'];?></p>
-                <p><strong>Capacity of Boat:</Strong>  <?php echo $result['Capacity'];?> persons.</p>
+            <h3 class="heading-92913 text-black">Bus Details</h3>
+                <p><strong>Bus Name:</Strong>  <?php echo $result['BoatName'];?></p>
+                <p><strong>Bus Size:</Strong>  <?php echo $result['Size'];?></p>
+                <p><strong>Capacity of Bus:</Strong>  <?php echo $result['Capacity'];?> persons.</p>
               <p><strong>Source:</Strong>  <?php echo $result['Source'];?></p> 
-              <p><strong>Destination: <?php echo $result['Destination'];?></strong> </p>
-                <p><strong>Route: <?php echo $result['Route'];?></strong> </p>
-                <p><strong>Price: <?php echo $result['Price'];?>(per head)</strong> </p>
-                <p><strong>Description: <?php echo $result['Description'];?></strong> </p>
+              <p><strong>Destination: </strong><?php echo $result['Destination'];?> </p>
+                <p><strong>Route:</strong> <?php echo $result['Route'];?> </p>
+                <p><strong>Price:</strong> <?php echo $result['Price'];?>(per day) </p>
+                <p><strong>Description:</strong> <?php echo $result['Description'];?> </p>
 
               
               <div class="form-group col-md-12">
@@ -96,12 +97,12 @@ while($result=mysqli_fetch_array($query)){
     </div>
     
 
-    <div class="site-section bg-image overlay" style="background-image: url('images/hero_2.jpg');">
+    <div class="site-section bg-image overlay" style="background-image: url('images/ns_bus_30.png');">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="text-white">Get In Touch With Us</h2>
-            <p class="mb-0"><a href="contact.php" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
+            <p class="mb-0"><a href="about.php" class="btn btn-warning py-3 px-5 text-white">About Us</a></p>
           </div>
         </div>
       </div>

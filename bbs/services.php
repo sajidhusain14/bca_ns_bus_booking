@@ -6,7 +6,7 @@ include('includes/config.php');
 <html lang="en">
 
 <head>
-  <title>Boat Booking System || Services</title>
+  <title>Bus Booking System || Services</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -29,6 +29,9 @@ include('includes/config.php');
   <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 
 
@@ -41,13 +44,13 @@ include('includes/config.php');
    <?php include_once("includes/navbar.php");?>
     
 
-      <div class="intro-section" style="background-image: url('images/hero_2.jpg');">
-        <div class="container">
+   <div class="intro-section" style="background-image: url('images/ns_bus_12.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 100vh;width: 100%;">
+   <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
               <h1>Our Services</h1>
        
-              <p><a href="#" class="btn btn-primary py-3 px-5">Contact</a></p>
+              <p><a href="faqs.php" class="btn btn-primary py-3 px-5">Faqs!</a></p>
             </div>
           </div>
         </div>
@@ -78,41 +81,78 @@ $total_records = $total_row[0];
 $total_pages = ceil($total_records / $limit);
 
 // Fetch the boats for the current page with limit and offset
-$query = mysqli_query($con, "SELECT * FROM tblboat LIMIT $limit OFFSET $offset");
+// $query = mysqli_query($con, "SELECT * FROM tblboat LIMIT $limit OFFSET $offset");
+
+
+  // new add chatgpt
+  $query = mysqli_query($con, "SELECT * FROM tblboat WHERE ID NOT IN (SELECT BoatId FROM tblbookings WHERE BookingStatus = 'Accepted') LIMIT $limit OFFSET $offset");
+
 ?>
 
 <div class="py-5">
   <div class="container">
+    <!-- Section Heading -->
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center">
         <span class="text-serif text-primary">Destination</span>
         <h3 class="heading-92913 text-black text-center">Our Destinations</h3>
       </div>
     </div>
+
+    <!-- Destinations Grid -->
     <div class="row">
-      <?php while ($result = mysqli_fetch_array($query)) { ?>
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="service-39381">
-            <img src="admin/images/<?php echo $result['Image']; ?>" alt="Image" width="350" height="200">
-            <div class="p-4">
-              <h3><a href="boat-details.php?bid=<?php echo $result['ID']; ?>"><span class="icon-room mr-1 text-primary"></span> <?php echo $result['Source']; ?> &mdash; <?php echo $result['Destination']; ?></a></h3>
-              <div class="d-flex">
-                <div class="mr-auto">
-                  <a href="book-boat.php?bid=<?php echo $result['ID']; ?>" class="btn btn-primary" style="color:white;">
-                 Book</a>
-                </div>
-                <div class="ml-auto price">
-                  <span class="bg-primary">$<?php echo $result['Price']; ?></span>
-                </div>
-              </div>
+      
+     <!-- new add chatgpt -->
+
+     <?php while ($result = mysqli_fetch_array($query)) { ?>
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="service-39381 border rounded">
+            <!-- Image with fixed size and responsive scaling -->
+            <div class="img-container" style="width: 100%; height: 200px; overflow: hidden;">
+                <img 
+                    src="admin/images/<?php echo $result['Image']; ?>" 
+                    alt="Image" 
+                    class="img-fluid w-100 h-100" 
+                    style="object-fit: cover;"
+                >
             </div>
-          </div>
+            <!-- Content -->
+            <div class="p-4">
+                <h3>
+                    <a href="boat-details.php?bid=<?php echo $result['ID']; ?>">
+                        <span class="icon-room mr-1 text-success"></span> 
+                        <?php echo $result['Source']; ?> &mdash; <?php echo $result['Destination']; ?>
+                    </a>
+                </h3>
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <?php
+                        // Check if the bus is available
+                        $busId = $result['ID'];
+                        $statusQuery = mysqli_query($con, "SELECT BookingStatus FROM tblbookings WHERE BoatId = '$busId' AND BookingStatus = 'Accepted'");
+                        if (mysqli_num_rows($statusQuery) > 0) {
+                            echo '<button class="btn btn-danger text-white" disabled>Bus Not Available</button>';
+                        } else {
+                            echo '<a href="book-boat.php?bid=' . $result['ID'] . '" class="btn btn-success text-white">Book</a>';
+                        }
+                        ?>
+                    </div>
+                    <div class="ml-auto price">
+                        <span class="bg-success text-white p-2 rounded">
+                            ₹ <?php echo $result['Price']; ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
-      <?php } ?>
+    </div>
+<?php } ?>
+
+
     </div>
 
-    <!-- Pagination Links -->
-    <div class="pagination justify-content-center">
+    <!-- Pagination -->
+    <div class="pagination justify-content-center mt-4">
       <nav aria-label="Page navigation">
         <ul class="pagination">
           <!-- Previous Page Link -->
@@ -152,6 +192,7 @@ $query = mysqli_query($con, "SELECT * FROM tblboat LIMIT $limit OFFSET $offset")
     </div>
   </div>
 </div>
+
 
 
     

@@ -16,7 +16,7 @@ else{
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | New Bookings</title>
+  <title>Bus Booking System | New Bookings</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -79,16 +79,18 @@ else{
                     <th>Email Id</th>
                     <th>Mobile No</th>
                     <th>No. People</th>
-                    <th>Boking Date/Time</th>
+                    <th>Booking Date/Time</th>
                      <th>Posting Date</th>
                      <th>Status</th>
-                    <th>Action</th>
+                    <th>Details</th>
+                    <th>Take Action</th>
                   </tr>
                   </thead>
                   <tbody>
 <?php $query = mysqli_query($con, "SELECT * FROM tblbookings");
 $cnt=1;
 while($result=mysqli_fetch_array($query)){
+
 ?>
 
                   <tr>
@@ -105,12 +107,25 @@ while($result=mysqli_fetch_array($query)){
 <span class="badge bg-warning text-dark">Not Processed Yet</span>
                   <?php elseif($result['BookingStatus']=='Accepted'): ?>
                     <span class="badge bg-success">Accepted</span>
-                    <?php elseif($result['Rejected']=='Rejected'): ?>
+                    <?php elseif($result['BookingStatus']=='Rejected'): ?>
                       <span class="badge bg-danger">Rejected</span>
                     <?php endif;?></td>
                     <th>
      <a href="booking-details.php?bid=<?php echo $result['ID'];?>" title="View Details" class="btn btn-primary btn-xs"> View Details</a> 
  </th>
+
+
+ <!-- new add chatgpt -->
+<td>
+    <!-- <a href="booking-details.php?bid=<?php echo $result['ID'];?>" title="View Details" class="btn btn-primary btn-xs"> View Details</a> -->
+    <!-- Add a dropdown to change status -->
+    <select class="form-control change-status" data-booking-id="<?php echo $result['ID']; ?>">
+        <option value="Not Processed Yet" <?php if ($result['BookingStatus'] == '') echo 'selected'; ?>>Not Processed Yet</option>
+        <option value="Accepted" <?php if ($result['BookingStatus'] == 'Accepted') echo 'selected'; ?>>Accepted</option>
+        <option value="Rejected" <?php if ($result['BookingStatus'] == 'Rejected') echo 'selected'; ?>>Rejected</option>
+    </select>
+</td>
+
                   </tr>
          <?php $cnt++;} ?>
              
@@ -164,6 +179,7 @@ while($result=mysqli_fetch_array($query)){
 <script src="dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -179,6 +195,32 @@ while($result=mysqli_fetch_array($query)){
       "responsive": true,
     });
   });
+
+// new add chatgpt
+
+  $(document).ready(function() {
+    $('.change-status').on('change', function() {
+        var bookingId = $(this).data('booking-id');
+        var newStatus = $(this).val();
+
+        $.ajax({
+            url: 'update-booking-status.php',
+            type: 'POST',
+            data: {
+                bookingId: bookingId,
+                newStatus: newStatus
+            },
+            success: function(response) {
+                alert('Status updated successfully!');
+                location.reload(); // Reload the page to reflect changes
+            },
+            error: function() {
+                alert('Error updating status.');
+            }
+        });
+    });
+});
+
 </script>
 </body>
 </html>

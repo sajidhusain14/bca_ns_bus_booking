@@ -26,7 +26,7 @@ echo "<script>alert('Email id or Mobile no is invalid');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | Password Recovery</title>
+  <title>Bus Booking System | Password Recovery</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -53,9 +53,9 @@ return true;
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline card-success">
     <div class="card-header text-center">
-      <a href="index.php" class="h1"><b>Admin</b> |  Boat Booking</a>
+    <a href="index.php" class="h1 text-success "><b>Admin</b> | Bus Booking</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Reset your password</p>
@@ -103,7 +103,7 @@ return true;
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" name="resetpwd">Reset</button>
+            <button type="submit" class="btn btn-success btn-block" name="resetpwd">Reset</button>
           </div>
           <!-- /.col -->
         </div>

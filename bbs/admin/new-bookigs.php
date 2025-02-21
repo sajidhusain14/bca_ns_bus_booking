@@ -16,7 +16,7 @@ else{
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | New Bookings</title>
+  <title>Bus Booking System | New Bookings</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -79,7 +79,7 @@ else{
                     <th>Email Id</th>
                     <th>Mobile No</th>
                     <th>No. People</th>
-                    <th>Boking Date/Time</th>
+                    <th>Booking Date/Time</th>
                      <th>Posting Date</th>
                      <th>Status</th>
                     <th>Action</th>

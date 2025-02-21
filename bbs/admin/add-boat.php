@@ -27,7 +27,7 @@ $boatimage=md5($image).time().$extension;
 move_uploaded_file($_FILES["image"]["tmp_name"],"images/".$boatimage);
 $query=mysqli_query($con,"insert into tblboat(BoatName,Image,Size,Capacity,Source,Destination,Route,Price,Description,AddedBy) values('$boatname','$boatimage','$size','$capacity','$source','$destination','$route','$price','$description','$addedby')");
 if($query){
-echo "<script>alert('Boat detail added successfully.');</script>";
+echo "<script>alert('Bus detail added successfully.');</script>";
 echo "<script type='text/javascript'> document.location = 'add-boat.php'; </script>";
 } else {
 echo "<script>alert('Something went wrong. Please try again.');</script>";
@@ -41,7 +41,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System  | Add Boat</title>
+  <title>Bus Booking System  | Add Bus</title>
 
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
 
@@ -74,12 +74,12 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Boat</h1>
+            <h1>Add Bus</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
-              <li class="breadcrumb-item active">Add Boat</li>
+              <li class="breadcrumb-item active">Add Bus</li>
             </ol>
           </div>
         </div>
@@ -95,7 +95,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Boat Details</h3>
+                <h3 class="card-title">Bus Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -104,8 +104,8 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 
 
    <div class="form-group">
-                    <label for="exampleInputFullname">Name of Boat</label>
-                    <input type="text" class="form-control" id="boatname" name="boatname" placeholder="Enter Name of Boat" required>
+                    <label for="exampleInputFullname">Name of Bus</label>
+                    <input type="text" class="form-control" id="boatname" name="boatname" placeholder="Enter Name of Bus" required>
                   </div>
 
  <div class="form-group">
@@ -116,7 +116,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
                     <label for="exampleInputFullname">Size</label>
                     
                     <select class="form-control" name="size" required>
-                      <option value="">Choose Size of Boat</option>
+                      <option value="">Choose Size of Bus</option>
                       <option value="Small">Small</option>
                       <option value="Medium">Medium</option>
                       <option value="Large">Large</option>
@@ -126,7 +126,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 
 <div class="form-group">
                     <label for="exampleInputFullname">Capacity of Person</label>
-                    <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Enter Capacity of Boat" required>
+                    <input type="text" class="form-control" id="capacity" name="capacity" placeholder="Enter Capacity of Bus" required>
                   </div>
 
                   <div class="form-group">
@@ -148,7 +148,7 @@ echo "<script>alert('Something went wrong. Please try again.');</script>";
 
                 <div class="form-group">
                     <label for="exampleInputFullname">Description</label>
-                    <textarea class="form-control" id="description" name="description" placeholder="Enter Description of Boat" required></textarea>
+                    <textarea class="form-control" id="description" name="description" placeholder="Enter Description of Bus" required></textarea>
                   </div>
 
 

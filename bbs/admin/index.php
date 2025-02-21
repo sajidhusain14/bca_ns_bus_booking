@@ -24,7 +24,7 @@ if(isset($_POST['login']))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boat Booking System | Login</title>
+  <title>Bus Booking System | Login</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,9 +38,10 @@ if(isset($_POST['login']))
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-      <a href="index.php" class="h1"><b>Admin</b> |  Boat Booking</a>
+  <div class="card card-outline card-success">
+    <div class="card-header text-center">   
+    <a href="index.php" class="h1 text-success "><b>Admin</b> | Bus Booking</a>
+
     </div>
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -68,7 +69,7 @@ if(isset($_POST['login']))
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" name="login">Sign In</button>
+            <button type="submit" class="btn btn-success btn-block" name="login">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
