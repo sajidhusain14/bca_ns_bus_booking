@@ -117,7 +117,7 @@
 
     <div class="bg-white ">
     <div class="container py-4 shadow-lg ">
-        <h2 class="text-dark text-center fw-bold mb-5 ">Meet Our Team</h2>
+        <h2 class="text-dark text-center fw-bold mb-5 ">Meet our Our Team</h2>
 
         <div class="row gy-4">
             <div class="col-lg-6">
