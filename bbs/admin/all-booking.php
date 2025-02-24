@@ -103,7 +103,7 @@ while($result=mysqli_fetch_array($query)){
                   
                     <td><?php echo $result['BookingDateFrom']?>/<?php echo $result['BookingTime']?></td>
                     <td><?php echo $result['postingDate']?></td>
-                    <td><?php if($result['BookingStatus']==''): ?>
+                    <td><?php if($result['BookingStatus']=='Not Processed Yet'): ?>
 <span class="badge bg-warning text-dark">Not Processed Yet</span>
                   <?php elseif($result['BookingStatus']=='Accepted'): ?>
                     <span class="badge bg-success">Accepted</span>
@@ -116,15 +116,18 @@ while($result=mysqli_fetch_array($query)){
 
 
  <!-- new add chatgpt -->
-<td>
     <!-- <a href="booking-details.php?bid=<?php echo $result['ID'];?>" title="View Details" class="btn btn-primary btn-xs"> View Details</a> -->
     <!-- Add a dropdown to change status -->
-    <select class="form-control change-status" data-booking-id="<?php echo $result['ID']; ?>">
-        <option value="Not Processed Yet" <?php if ($result['BookingStatus'] == '') echo 'selected'; ?>>Not Processed Yet</option>
+  
+
+<td class="text-nowrap">
+    <select class="form-control change-status" style="min-width: 120px;" data-booking-id="<?php echo $result['ID']; ?>">
+        <option value="Not Processed Yet" <?php if ($result['BookingStatus'] == 'Not Processed Yet') echo 'selected'; ?>>Not Processed Yet</option>
         <option value="Accepted" <?php if ($result['BookingStatus'] == 'Accepted') echo 'selected'; ?>>Accepted</option>
         <option value="Rejected" <?php if ($result['BookingStatus'] == 'Rejected') echo 'selected'; ?>>Rejected</option>
     </select>
 </td>
+
 
                   </tr>
          <?php $cnt++;} ?>
@@ -181,10 +184,18 @@ while($result=mysqli_fetch_array($query)){
 <script>
 
   $(function () {
+
+    // new add chatgpt
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  "responsive": true,
+  "lengthChange": false,
+  "autoWidth": false,
+  "columnDefs": [
+    { "orderable": false, "targets": -1 } // Disable ordering for the last column (dropdown)
+  ],
+  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -198,8 +209,7 @@ while($result=mysqli_fetch_array($query)){
 
 // new add chatgpt
 
-  $(document).ready(function() {
-    $('.change-status').on('change', function() {
+$(document).on('change', '.change-status', function() {
         var bookingId = $(this).data('booking-id');
         var newStatus = $(this).val();
 
@@ -219,7 +229,6 @@ while($result=mysqli_fetch_array($query)){
             }
         });
     });
-});
 
 </script>
 </body>

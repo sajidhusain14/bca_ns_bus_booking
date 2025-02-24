@@ -106,7 +106,7 @@
 
       <!-- Copyright -->
       <div class="col text-center text-sm-end">
-        <p class="mb-0 text-muted small">© 2024 NS Online Bus Booking System. All rights reserved.</p>
+        <p class="mb-0 text-muted small">© 2024 NS Online Bus Booking System.</p>
       </div>
     </div>
   </div>

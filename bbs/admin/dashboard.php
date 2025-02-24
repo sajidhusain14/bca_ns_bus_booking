@@ -34,6 +34,47 @@ else{ ?>
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+  <style>
+    .more-info-btn {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 50px;
+        transition: 0.3s;
+    }
+
+    .arrow-icon {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .sub_more-info-btn:hover .arrow-icon {
+        transform: translateX(10px); 
+    }
+
+    .all_more-info-btn:hover .arrow-icon {
+        transform: translateX(10px);
+    }
+
+
+    .new_more-info-btn:hover .arrow-icon {
+        transform: translateX(10px); 
+    }
+
+
+
+    .accept_more-info-btn:hover .arrow-icon {
+        transform: translateX(10px); 
+    }
+
+
+    .reject_more-info-btn:hover .arrow-icon {
+        transform: translateX(10px);
+    }
+
+</style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -77,7 +118,9 @@ else{ ?>
           <?php if($_SESSION['utype']==1):?>
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+
+            <!-- sub admin -->
+            <div class="small-box bg-info" style="border-radius: 18px;">
               <div class="inner">
 <?php $query=mysqli_query($con,"select id from tbladmin where UserType=0");
 $subadmincount=mysqli_num_rows($query);
@@ -90,41 +133,43 @@ $subadmincount=mysqli_num_rows($query);
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
-              <a href="manage-subadmins.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="manage-subadmins.php" class="small-box-footer p-1 sub_more-info-btn" style="border-radius: 50px;" >More info <i class="fas fa-arrow-circle-right arrow-icon"></i></a>
             </div>
           </div>
         <?php endif;?>
+
+        
+        <!-- All bookings -->
+        <div class="col-lg-4 col-6">
+    <!-- small box -->
+    <div class="small-box bg-primary" style="border-radius: 18px;">
+        <div class="inner">
+            <?php 
+            $query1 = mysqli_query($con, "SELECT * FROM tblbookings");
+            $allbookings = mysqli_num_rows($query1);
+            ?>
+            <h3><?php echo $allbookings; ?></h3>
+            <p>All bookings</p>
+        </div>
+        <div class="icon">
+            <i class="ion ion-person-add"></i>
+        </div>
+        <a href="all-booking.php" style="border-radius: 50px;" class="small-box-footer p-1  all_more-info-btn">
+            More info <i class="fas fa-arrow-circle-right arrow-icon"></i>
+        </a>
+    </div>
+</div>
+
+
+          <!-- New Bookings -->
           <!-- ./col -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-<?php $query1=mysqli_query($con,"select * from tblbookings");
-$allbookings=mysqli_num_rows($query1);
-?>
-
-                <h3><?php echo $allbookings;?></h3>
-
-                <p>All bookings</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="all-booking.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-warning" style="border-radius: 18px;">
               <div class="inner">
  <?php $query3=mysqli_query($con,"select * from tblbookings where (BookingStatus is null || BookingStatus='')");
 $newbookings=mysqli_num_rows($query3);
 ?>      
-
-
-
-
 <h3 class="text-white"><?php echo $newbookings; ?></h3>
 <p class="text-white">New Bookings</p>
                 <!-- <h3><?php echo $newbookings;?></h3>
@@ -134,19 +179,20 @@ $newbookings=mysqli_num_rows($query3);
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <div style="background-color: rgba(0, 0, 0, 0.1);" class="p-1 text-center">
-    <a href="new-bookigs.php" class="small-box-footer text-white">More info <i class="fas fa-arrow-circle-right"></i></a>
-</div>          </div>
+              <div style="background-color: rgba(0, 0, 0, 0.1); border-radius: 50px;" class="p-1 text-center new_more-info-btn" >
+    <a href="new-bookigs.php" class="small-box-footer text-white ">More info <i class="fas fa-arrow-circle-right arrow-icon"></i></a>
+</div>          
+</div>
           </div>
           <!-- ./col -->
 
 
 <hr />
 
-
+<!-- Accepted Bookings -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-success" style="border-radius: 18px;">
               <div class="inner">
 <?php $query11=mysqli_query($con,"select * from tblbookings where (BookingStatus='Accepted')");
 $acceptedbookings=mysqli_num_rows($query11);
@@ -159,14 +205,16 @@ $acceptedbookings=mysqli_num_rows($query11);
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
-              <a href="accepted-bookings.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="accepted-bookings.php" class="small-box-footer p-1 accept_more-info-btn" style="border-radius: 50px;">More info <i class="fas fa-arrow-circle-right arrow-icon"></i></a>
             </div>
           </div>
  
+
+          <!-- Rejected Bookings -->
           <!-- ./col -->
           <div class="col-lg-4 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-danger" style="border-radius: 18px;">
               <div class="inner">
 <?php $query12=mysqli_query($con,"select * from tblbookings where (BookingStatus='Rejected')");
 $rejectedbookings=mysqli_num_rows($query12);
@@ -179,34 +227,11 @@ $rejectedbookings=mysqli_num_rows($query12);
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="rejected-bookings.php" class="small-box-footer p-1">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="rejected-bookings.php" class="small-box-footer p-1 reject_more-info-btn" style="border-radius: 50px;">More info <i class="fas fa-arrow-circle-right arrow-icon"></i></a>
             </div>
           </div>
           <!-- ./col -->
 
-
-          
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
           <!-- ./col -->
         </div>
         <!-- /.row -->
