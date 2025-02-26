@@ -64,7 +64,9 @@ include('includes/config.php');
         <div class="row">
 
           <div class="col-md-6">
-            <h3 class="heading-92913 text-black">Check Booking Status</h3>
+            <h3 text-black>Check Booking Status</h3>
+            <p class="heading-92913 text-black">Your Booking Are Accepted, Rejected or Not Proccesed Yet</p>
+
             <form action="#" class="row" method="post">
 
 

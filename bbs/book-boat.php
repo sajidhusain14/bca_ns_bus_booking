@@ -155,7 +155,7 @@ echo "<script>alert('Bus not available for these dates. Please select the diffre
 
               <div class="form-group col-md-6">
     <label for="input-7">Phone Number</label>
-    <input type="number" class="form-control" name="phonenumber" id="phonenumber" inputmode="numeric" min="0" maxlength="10" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
+    <input type="number" class="form-control" name="phonenumber" id="phonenumber" inputmode="numeric" min="10" maxlength="10" required oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);">
 </div>
 
               <div class="form-group col-md-12">

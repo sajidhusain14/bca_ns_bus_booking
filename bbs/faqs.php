@@ -113,8 +113,8 @@
 
   <div class="blog-list">
     <div class="list-block block-one">
-        <h2 class="frequently_questions_grid_h4">How do I create an account?</h2>
-        <p>Users can sign up by providing their email, phone number, and other necessary details on the registration page.</p>
+        <h2 class="frequently_questions_grid_h4">How do I Book Bus Online?</h2>
+        <p>To book a bus online, visit a Ns Online bus booking website, select a bus, enter your travel details</p>
     </div>
 
     <div class="list-block block-two">
@@ -122,15 +122,19 @@
         <p>Yes, the platform is free to use for searching and booking buses. However, ticket prices apply based on your booking.</p>
     </div>
 
+
     <div class="list-block block-three">
+        <h2 class="frequently_questions_grid_h4">Can I use the platform without an account?</h2>
+        <p>Guest users can search for buses, but booking requires an account for payment and confirmation.</p>
+    </div>
+
+
+    <div class="list-block block-four">
         <h2 class="frequently_questions_grid_h4">How do I reset my password?</h2>
         <p>Use the "Forgot Password" option on the login page to reset your password via email or phone verification.</p>
     </div>
 
-    <div class="list-block block-four">
-        <h2 class="frequently_questions_grid_h4">Can I use the platform without an account?</h2>
-        <p>Guest users can search for buses, but booking requires an account for payment and confirmation.</p>
-    </div>
+
 
     <div class="list-block block-five">
         <h2 class="frequently_questions_grid_h4">How do I book a ticket?</h2>
