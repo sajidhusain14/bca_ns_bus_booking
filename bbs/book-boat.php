@@ -128,11 +128,11 @@ echo "<script>alert('Bus not available for these dates. Please select the diffre
 
               <div class="form-group col-md-6">
     <label for="input-3">Date From:</label>
-    <input type="text" class="form-control datepicker" name="bookingdatefrom" id="bookingdatefrom" required="true">
+    <input type="date" class="form-control " name="bookingdatefrom" id="bookingdatefrom" required>
 </div>
 <div class="form-group col-md-6">
     <label for="input-4">Date To:</label>
-    <input type="text" class="form-control datepicker" name="bookingdateto" id="bookingdateto" required="true">
+    <input type="date" class="form-control " name="bookingdateto" id="bookingdateto" required>
 </div>
               
              <div class="form-group col-md-6">
@@ -227,13 +227,13 @@ echo "<script>alert('Bus not available for these dates. Please select the diffre
 <!-- new add chatgpt -->
 <script type="text/javascript">
     $(document).ready(function() {
-        // Initialize datepicker
+        Initialize datepicker
         $(".datepicker").datepicker({
             format: "yyyy-mm-dd",
             startDate: new Date() // Restrict selection to today and future dates
         });
 
-        // Form submission validation
+        Form submission validation
         $('form').on('submit', function(event) {
             var bookingDateFrom = new Date($('#bookingdatefrom').val());
             var bookingDateTo = new Date($('#bookingdateto').val());
@@ -266,5 +266,20 @@ echo "<script>alert('Bus not available for these dates. Please select the diffre
       }
     }
   </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
+        document.getElementById("bookingdatefrom").addEventListener("focus", function () {
+            this.setAttribute("min", today); // Ensure today is the minimum selectable date
+        });
+
+        document.getElementById("bookingdateto").addEventListener("focus", function () {
+            this.setAttribute("min", today);
+        });
+    });
+</script>
 
 </html>

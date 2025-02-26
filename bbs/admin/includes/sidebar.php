@@ -34,7 +34,7 @@
 <?php if($_SESSION['utype']==1):?>
 
 <!--Subadmins--->
-     <li class="nav-item">
+     <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -59,7 +59,7 @@
 
             </ul>
           </li>
-<?php endif;?>
+<?php endif;?> -->
 
 
     
@@ -96,47 +96,41 @@
 
 
 <!--Enrollment--->
-   <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-              <p>
-               Bookings
-                <i class="right fas fa-angle-left"></i>
-              </p>
+<li class="nav-item">
+    <a href="#" class="nav-link" id="bookings-toggle">
+        <i class="nav-icon fas fa-file"></i>
+        <p>
+            Bookings
+            <i class="right fas fa-angle-right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" id="bookings-submenu">
+        <li class="nav-item">
+            <a href="new-bookigs.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>New</p>
             </a>
-            <ul class="nav nav-treeview" style="display: none;">
-              <li class="nav-item">
-                <a href="new-bookigs.php" class="nav-link">  
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>New</p>
-                </a>
-              </li>   
-
-              <li class="nav-item">
-                <a href="accepted-bookings.php" class="nav-link">  
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Accepted</p>
-                </a>
-              </li>
-
-                <li class="nav-item">
-                <a href="rejected-bookings.php" class="nav-link">  
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Rejected</p>
-                </a>
-              </li>
-
-    
-
-                  <li class="nav-item">
-                <a href="all-booking.php" class="nav-link">  
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
+        </li>
+        <li class="nav-item">
+            <a href="accepted-bookings.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Accepted</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="rejected-bookings.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Rejected</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="all-booking.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All</p>
+            </a>
+        </li>
+    </ul>
+</li>
 
 
 
@@ -194,3 +188,19 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+
+  <script>
+  $(document).ready(function() {
+    // Toggle the submenu on click
+    $('#bookings-toggle').click(function(e) {
+        e.preventDefault(); // Prevent the default link behavior
+        $('#bookings-submenu').slideToggle(); // Toggle the submenu visibility
+        $(this).find('.right').toggleClass('fa-angle-left fa-angle-down'); // Toggle the arrow icon
+    });
+
+    // Keep the submenu open by default
+    $('#bookings-submenu').show();
+    $('#bookings-toggle .right').removeClass('fa-angle-left').addClass('fa-angle-down');
+});
+</script>

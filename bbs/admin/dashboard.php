@@ -116,11 +116,14 @@ else{ ?>
         <div class="row">
 
           <?php if($_SESSION['utype']==1):?>
-          <div class="col-lg-4 col-6">
+
+
+                        <!-- sub admin -->
+
+          <!-- <div class="col-lg-5 col-6"> -->
             <!-- small box -->
 
-            <!-- sub admin -->
-            <div class="small-box bg-info" style="border-radius: 18px;">
+            <!-- <div class="small-box bg-info" style="border-radius: 18px;">
               <div class="inner">
 <?php $query=mysqli_query($con,"select id from tbladmin where UserType=0");
 $subadmincount=mysqli_num_rows($query);
@@ -135,7 +138,7 @@ $subadmincount=mysqli_num_rows($query);
               </div>
               <a href="manage-subadmins.php" class="small-box-footer p-1 sub_more-info-btn" style="border-radius: 50px;" >More info <i class="fas fa-arrow-circle-right arrow-icon"></i></a>
             </div>
-          </div>
+          </div> -->
         <?php endif;?>
 
         
