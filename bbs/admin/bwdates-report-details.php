@@ -108,13 +108,15 @@ while($result=mysqli_fetch_array($query)){
                   
                     <td><?php echo $result['BookingDateFrom']?>/<?php echo $result['BookingTime']?></td>
                     <td><?php echo $result['postingDate']?></td>
-                              <td><?php if($result['BookingStatus']==''): ?>
-<span class="badge bg-warning text-dark">Not Processed Yet</span>
+                              <td>
+                              <?php if($result['BookingStatus'] == 'Not Processed Yet' || $result['BookingStatus'] == ''): ?>
+                                <span class="badge bg-warning text-dark">Not Processed Yet</span>
                   <?php elseif($result['BookingStatus']=='Accepted'): ?>
                     <span class="badge bg-success">Accepted</span>
                     <?php elseif($result['BookingStatus']=='Rejected'): ?>
                       <span class="badge bg-danger">Rejected</span>
-                    <?php endif;?></td>
+                    <?php endif;?>
+                  </td>
                     <th>
      <a href="booking-details.php?bid=<?php echo $result['ID'];?>" title="View Details" class="btn btn-primary btn-sm"> View Details</a> 
  </th>

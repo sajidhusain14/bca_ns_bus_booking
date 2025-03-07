@@ -184,7 +184,7 @@ include('includes/config.php');
   <div class="container">
     <div class="row justify-content-center mb-5">
       <div class="col-md-7 text-center">
-        <span class="text-serif text-primary">Destination</span>
+        <span class="text-serif text-primary">Display</span>
         <h3 class="heading-92913 text-black text-center">Our Buses</h3>
       </div>
     </div>

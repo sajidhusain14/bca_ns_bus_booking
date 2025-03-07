@@ -101,18 +101,18 @@ return true;
 <!-- Current Password--->
    <div class="form-group">
                     <label for="exampleInputFullname">Current Password</label>
-                <input class="form-control" id="currentpassword" name="currentpassword"  type="password" required="true">
+                <input class="form-control"  id="currentpassword" name="currentpassword"  type="password" required="true" placeholder="Enter Current Password">
                   </div>
 <!---New Password---->
  <div class="form-group">
 <label for="exampleInputEmail1">New Password</label>
-<input class="form-control " id="newpassword" type="password" name="newpassword" required="true">
+<input class="form-control " id="newpassword" type="password" name="newpassword" required="true" placeholder="Enter New Password">
 </div>
 
 <!--  Confrim Password---->
 <div class="form-group">
 <label for="text">Confirm Password</label>
- <input class="form-control " id="confirmpassword" type="password" name="confirmpassword"  required="true">
+ <input class="form-control " id="confirmpassword" type="password" name="confirmpassword"  required="true" placeholder="Enter Confirm Password">
                   </div>
 
       
